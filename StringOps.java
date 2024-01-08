@@ -22,19 +22,22 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-       int[] array = allIndexOf("MMMM",'M');
-       for(int i = 0; i < array.length; i++) System.out.println(array[i]);
     }
 
     public static String capVowelsLowRest (String string) {
-        String vowelString = "aeiou";
+        String vowelString = "aeiouAEIOU";
         String newString = "";
         for (int i = 0; i < string.length(); i++) {
-            if (vowelString.indexOf(string.charAt(i)) != -1)
-                newString += (char)(string.charAt(i) - 32);
-            else if (string.charAt(i) >= 65 && string.charAt(i) <= 90) 
+            if (vowelString.indexOf(string.charAt(i)) != -1) {
+                if (string.charAt(i) >= 97 && string.charAt(i) <= 122) 
+                        newString += (char)(string.charAt(i) - 32);
+                else newString += (char)(string.charAt(i));
+            }
+            else { 
+            if (string.charAt(i) >= 65 && string.charAt(i) <= 90) 
                 newString += (char)(string.charAt(i) + 32);
             else newString += string.charAt(i);
+            }
         }
         return newString;
     }
