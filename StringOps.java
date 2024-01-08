@@ -22,21 +22,66 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+       int[] array = allIndexOf("MMMM",'M');
+       for(int i = 0; i < array.length; i++) System.out.println(array[i]);
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+        String vowelString = "aeiou";
+        String newString = "";
+        for (int i = 0; i < string.length(); i++) {
+            if (vowelString.indexOf(string.charAt(i)) != -1)
+                newString += (char)(string.charAt(i) - 32);
+            else if (string.charAt(i) >= 65 && string.charAt(i) <= 90) 
+                newString += (char)(string.charAt(i) + 32);
+            else newString += string.charAt(i);
+        }
+        return newString;
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        String newString = "";
+        int wordCount = 1;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) != 32) {
+                if (wordCount == 1) {
+                   if (string.charAt(i) >= 65 && string.charAt(i) <= 90) 
+                        newString += (char)(string.charAt(i) + 32); 
+                    else newString += string.charAt(i);
+                }
+                else {
+                    if (string.charAt(i-1) == 32) {
+                        if (string.charAt(i) >= 97 && string.charAt(i) <= 122) 
+                        newString += (char)(string.charAt(i) - 32);
+                        else newString += (char)(string.charAt(i));
+                    }
+                    else {
+                        if (string.charAt(i) >= 65 && string.charAt(i) <= 90) 
+                        newString += (char)(string.charAt(i) + 32);
+                        else newString += (char)(string.charAt(i));
+                    }
+                }
+            } 
+            if (i != string.length() - 1) {
+                if (string.charAt(i+1) == 32) wordCount++;
+            }
+        }
+        return newString;
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int count = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) count++;
+        }
+        int[] array = new int[count];
+        count = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {
+                array[count] = i;
+                count++;
+            }
+        }
+        return array;
     }
 }
